@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/destination", destinationRouter);
 
+await connectDB();
 app.listen(port, async () => {
-  await connectDB();
   console.log(`Example app listening on port ${port}`);
 });
