@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import { Card, Separator } from "@heroui/react";
+import { redirect } from "next/navigation";
 import {
   Button,
   Description,
@@ -23,6 +24,10 @@ const LoginPage = () => {
       email: user.email,
       password: user.password,
     });
+
+    if (data) {
+      redirect("/");
+    }
     console.log("login data", data);
   };
   return (

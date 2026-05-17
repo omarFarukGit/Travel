@@ -1,18 +1,18 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Navbar = () => {
-  // const { data: session } = authClient.useSession();
-  // const user = session?.user;
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
-  // const handleSignOut = async () => {
-  //   await authClient.signOut();
-  // };
-  const user = false;
+  const handleSignOut = async () => {
+    await authClient.signOut();
+  };
 
   return (
     <div className=" py-3">
