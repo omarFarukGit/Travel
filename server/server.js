@@ -11,11 +11,13 @@ const port = 6001 || process.env.PORT;
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+export const verify = (req, res, next) => {
+  const header = req.headers.authorization;
+  console.log(header);
+  next();
+};
 
-app.use("/api/destination", destinationRouter);
+app.use("/api/destination", verify, destinationRouter);
 
 app.listen(port, async () => {
   await connectDB();

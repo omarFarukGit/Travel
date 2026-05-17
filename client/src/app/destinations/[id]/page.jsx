@@ -1,20 +1,24 @@
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 import { FaRegCalendar } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;
-  //   const {token} = await auth.api.getToken({
-  //     headers: await headers()
-  //   })
 
-  //   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/destination/${id}`, {
-  //     headers: {
-  //       authorization: `Bearer ${token}`
-  //     }
-  //   });
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  console.log(token, "token");
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/destination/${id}`,
+    {
+      headers: {
+        authorization: `Berer ${token}`,
+      },
+    },
   );
   const destination = await res.json();
 
